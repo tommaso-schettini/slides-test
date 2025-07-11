@@ -1,0 +1,12 @@
+project:
+  type: default
+  execute-dir: project
+
+jupyter:
+  # Use the EXACT path from your 'quarto check' output
+  # Path: C:/Users/tomma/AppData/Local/Programs/Python/Python311/python.exe
+  python: "C:/Users/tomma/AppData/Local/Programs/Python/Python311/python.exe"
+
+format:
+  revealjs:
+    embed-resources: true

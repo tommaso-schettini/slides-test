@@ -1,0 +1,44 @@
+# Quarto output
+_site/
+*.html
+*.pdf
+*.docx
+*.epub
+
+# Quarto cache and metadata
+.quarto/
+.quarto-cache/
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Notebooks
+*.ipynb_checkpoints
+
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+*.env
+
+# Binder logs (if any)
+binder/logs/
+
+# OS / Editor-specific files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Common JS/CSS outputs from Quarto
+_site/
+docs/
+*.js
+*.css
+

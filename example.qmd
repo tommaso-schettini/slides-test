@@ -1,0 +1,75 @@
+---
+title: "My Portable Quarto Slides"
+author: "Your Name"
+format:
+  revealjs:
+    embed-resources: true
+    css: custom_css.css
+    footer: "Tommaso Schettini - 2025"
+    thebe: true
+jupyter: python3
+---
+
+## Introduction
+
+Welcome to this *portable* Quarto presentation!
+
+-   All assets are embedded directly.
+-   It's a single HTML file.
+-   Easy to share anywhere!
+
+---
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0, 10)
+y = np.sin(x)
+
+plt.plot(x, y)
+plt.title("Sine Wave")
+plt.show()
+```
+
+## What is Quarto?
+
+Quarto is an open-source scientific and technical publishing system.
+
+It allows you to combine:
+* Narrative text
+* Executable code (e.g., Python, R, Julia)
+* Results (plots, tables, etc.)
+
+---
+
+## A Simple Code Example (Corrected)
+
+Let's test this Python code block, ensuring it executes.
+
+```{python}
+# This is a very simple Python code block
+message = "Python code executed successfully!"
+print(message)
+
+# Basic arithmetic
+result = 5 * 7
+print(f"5 multiplied by 7 is: {result}")
+```
+
+---
+
+```{python}
+#| echo: true
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+r = np.arange(0, 2, 0.01)
+theta = 2 * np.pi * r
+fig, ax = plt.subplots(subplot_kw={"projection": "polar"})
+ax.plot(theta, r)
+ax.set_rticks([0.5, 1, 1.5, 2])
+ax.grid(True)
+plt.show()
+```
