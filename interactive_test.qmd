@@ -1,140 +1,24 @@
 ---
-title: "Interactive Python Coding in Quarto Slides"
-author: "Your Name"
+title: "Interactive Quarto Slides"
 format:
   revealjs:
     theme: simple
-    slide-number: true
-    show-slide-number: all
-    controls: true
-    progress: true
-    hash: true
-    center: true
-    transition: slide
-    background-transition: fade
+    thebe: true
+    thebe-binder-url: "https://mybinder.org"
+    thebe-binder-config:
+      repo: tommaso-schettini/slides-test
+      ref: main
+jupyter: python3
+execute:
+  enabled: true
+  eval: false
+  echo: true
 ---
 
-## Welcome to Interactive Python Coding
 
-This slide deck demonstrates how to embed an interactive Python code editor directly into your Quarto Reveal.js presentation. You can type Python code, run it, and see the output live!
+## 🧪 Try Python Live
 
----
-
-## Live Python Code Editor
-
-Type your Python code below and click "Run Code" to see the output.
-The code execution is simulated using the Gemini API.
-
-<div class="flex flex-col items-center justify-center p-4">
-  <textarea id="pythonCodeEditor"
-            class="w-full h-48 p-4 mb-4 text-sm font-mono bg-gray-800 text-green-300 rounded-lg shadow-md resize-y focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Write your Python code here...
-Example:
-print('Hello, Quarto!')
-a = 5
-b = 3
-print(f'The sum is: {a + b}')">
-print('Hello from the slide!')
-for i in range(3):
-    print(f'Iteration {i}')
-</textarea>
-
-  <button id="runCodeButton"
-          class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-    Run Code
-  </button>
-
-  <div id="loadingIndicator" class="hidden mt-4 text-blue-500">
-    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
-    <span class="ml-2">Running code...</span>
-  </div>
-
-  <div id="outputArea"
-       class="w-full mt-4 p-4 text-sm font-mono bg-gray-900 text-gray-100 rounded-lg shadow-inner overflow-auto whitespace-pre-wrap max-h-64">
-    Output will appear here.
-  </div>
-</div>
-
-<script>
-  // Function to run Python code using the Gemini API
-  async function runPythonCode() {
-    const codeEditor = document.getElementById('pythonCodeEditor');
-    const outputArea = document.getElementById('outputArea');
-    const loadingIndicator = document.getElementById('loadingIndicator');
-    const runButton = document.getElementById('runCodeButton');
-
-    const pythonCode = codeEditor.value;
-
-    // Show loading indicator and disable button
-    loadingIndicator.classList.remove('hidden');
-    runButton.disabled = true;
-    outputArea.textContent = 'Running code...';
-
-    try {
-      // Construct the prompt for the LLM
-      const prompt = `Execute the following Python code and return only its standard output. Do not include any explanations, comments, or additional text, just the raw output. If there's an error, return the error message.
-
-\`\`\`python
-${pythonCode}
-\`\`\`
-`;
-
-      let chatHistory = [];
-      chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-      const payload = { contents: chatHistory };
-      const apiKey = ""; // Canvas will provide this
-      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-
-      if (!response.ok) {
-        throw new Error(`API error: ${response.statusText}`);
-      }
-
-      const result = await response.json();
-
-      let outputText = "No output.";
-      if (result.candidates && result.candidates.length > 0 &&
-          result.candidates[0].content && result.candidates[0].content.parts &&
-          result.candidates[0].content.parts.length > 0) {
-        outputText = result.candidates[0].content.parts[0].text;
-      } else {
-        outputText = "Error: Could not get a valid response from the API.";
-      }
-      outputArea.textContent = outputText;
-
-    } catch (error) {
-      console.error('Error executing Python code:', error);
-      outputArea.textContent = `Error: ${error.message || 'An unknown error occurred.'}`;
-    } finally {
-      // Hide loading indicator and re-enable button
-      loadingIndicator.classList.add('hidden');
-      runButton.disabled = false;
-    }
-  }
-
-  // Attach event listener to the button
-  document.getElementById('runCodeButton').addEventListener('click', runPythonCode);
-</script>
-
----
-
-## How This Works
-
-1.  **Code Input:** You type Python code into the `textarea` on the previous slide.
-2.  **Run Button:** When you click "Run Code", a JavaScript function is triggered.
-3.  **API Call:** This JavaScript function sends your Python code as a prompt to the Gemini API (specifically, the `gemini-2.0-flash` model).
-4.  **Simulated Execution:** The Gemini model processes the Python code, effectively "running" it in its environment, and returns the generated output (or error messages).
-5.  **Display Output:** The JavaScript then takes this output from the API and displays it in the "Output will appear here" area on the slide.
-
-This allows for a highly interactive experience without needing a dedicated backend server for your slides.
-
----
-
-## Conclusion
-
-This interactive setup enhances your presentations, allowing for live demonstrations and experimentation with Python code directly within your Quarto Reveal.js slides.
+```{python}
+# Click the ▶ button to run this code!
+x = 3
+x ** 2
