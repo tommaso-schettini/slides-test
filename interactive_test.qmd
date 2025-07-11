@@ -22,3 +22,4 @@ execute:
 # Click the ▶ button to run this code!
 x = 3
 x ** 2
+```
